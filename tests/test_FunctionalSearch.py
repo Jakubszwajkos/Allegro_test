@@ -22,12 +22,13 @@ from utilities.BaseClass import BaseClass
 
 class TestWyszukiwanie(BaseClass):
 
-    def test_wyszukiwanie(self):
+    def test_wyszukiwanie(self, getData):
         log = self.getLogger()
         Home_Page = HomePage(self.driver)
         Search_Page = SearchPage(self.driver)
         log.info("Home Page")
-        Home_Page.Wyszukiwanie_przedmiotu().send_keys("ps5")
+        log.info("Looking product is " +getData["Product"])
+        Home_Page.Wyszukiwanie_przedmiotu().send_keys(getData["Product"])
         Home_Page.Przycisk_Szukaj().click()
         log.info("Moved to SearchPage")
         Search_Page.Konsole().click()
@@ -71,6 +72,8 @@ class TestWyszukiwanie(BaseClass):
                     log.info("Stop scanning")
                     print("The number of offers do not matches the number displayed next to the category")
 
-
+    @pytest.fixture(params=[{"Product": "ps5"}])
+    def getData(self, request):
+        return request.param
 
 
