@@ -43,7 +43,7 @@ class TestLogowanie(BaseClass):
                         self.Wait(3)
 
                         log.info("password is " + getData["password"])
-                        Logging_Page.Password().send_keys("password")
+                        Logging_Page.Password().send_keys(getData["password"])
                         Logging_Page.Zaloguj_sie_LoggingPage().click()
                         Error_Text = Logging_Page.Error_login_text().text
 
